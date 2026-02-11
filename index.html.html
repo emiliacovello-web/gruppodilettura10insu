@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Club 10+ - 16 Gennaio 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Bubblegum+Sans&family=Patrick+Hand&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            padding: 20px;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '📚';
+            position: fixed;
+            font-size: 4.5em;
+            opacity: 0.25;
+            animation: floatBook1 20s ease-in-out infinite;
+            top: 10%;
+            left: 10%;
+            z-index: 0;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+        }
+
+        body::after {
+            content: '✨';
+            position: fixed;
+            font-size: 3.5em;
+            opacity: 0.3;
+            animation: floatBook2 15s ease-in-out infinite;
+            top: 60%;
+            right: 15%;
+            z-index: 0;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .floating-icon {
+            position: fixed;
+            opacity: 0.28;
+            z-index: 0;
+            pointer-events: none;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .icon1 { top: 25%; left: 5%; font-size: 3.8em; animation: floatBook1 18s ease-in-out infinite 2s; }
+        .icon2 { top: 70%; left: 80%; font-size: 3.2em; animation: floatBook2 16s ease-in-out infinite 4s; }
+        .icon3 { top: 40%; right: 5%; font-size: 4.2em; animation: floatBook1 22s ease-in-out infinite 1s; }
+        .icon4 { bottom: 15%; left: 50%; font-size: 3.5em; animation: floatBook2 19s ease-in-out infinite 3s; }
+        .icon5 { top: 15%; right: 25%; font-size: 3em; animation: floatBook1 17s ease-in-out infinite 5s; }
+        .icon6 { bottom: 25%; right: 40%; font-size: 3.6em; animation: floatBook2 21s ease-in-out infinite 2.5s; }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes floatBook1 {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(10deg);
+            }
+        }
+
+        @keyframes floatBook2 {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-40px) rotate(-15deg);
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-family: 'Bubblegum Sans', 'Fredoka', cursive;
+        }
+
+        .date-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .date-header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .date-header h2 {
+            font-size: 2em;
+            margin-bottom: 5px;
+            font-family: 'Patrick Hand', 'Caveat', cursive;
+        }
+
+        .date-header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        .book-card {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border-color: #667eea;
+            animation: gentleBounce 0.5s ease;
+        }
+
+        @keyframes gentleBounce {
+            0%, 100% { transform: translateY(-5px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cover-icon {
+            font-size: 4em;
+            color: white;
+            z-index: 1;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .book-title {
+            font-size: 1.4em;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-weight: bold;
+            font-family: 'Fredoka', cursive;
+        }
+
+        .book-author {
+            color: #718096;
+            font-size: 1em;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .book-plot {
+            color: #4a5568;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .comments-section {
+            margin-top: 20px;
+        }
+
+        .comments-label {
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comments-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95em;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        .comments-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .save-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .save-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .save-btn:active {
+            transform: scale(0.98);
+        }
+
+        .saved-indicator {
+            display: none;
+            color: #48bb78;
+            font-size: 0.9em;
+            margin-top: 8px;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 0.95em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-icon icon1">📖</div>
+    <div class="floating-icon icon2">🌟</div>
+    <div class="floating-icon icon3">📕</div>
+    <div class="floating-icon icon4">💫</div>
+    <div class="floating-icon icon5">📘</div>
+    <div class="floating-icon icon6">⭐</div>
+    
+    <div class="container">
+        <h1>📚 Book Club 10+</h1>
+        <p style="text-align: center; color: white; font-size: 1.2em; margin-bottom: 20px; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">
+            Per lettori dai 10 anni in su<br>
+            <span style="font-size: 0.9em;">Organizzato dalla Biblioteca di Segrate con la lettrice Elena</span>
+        </p>
+        
+        <div class="date-section">
+            <div class="date-header">
+                <h2>📅 16 Gennaio 2026</h2>
+                <p>Incontro di lettura e discussione</p>
+            </div>
+            
+            <div class="books-grid">
+                <!-- Il mostro di ghiaccio -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: #4a90c4; position: relative;">
+                        <div style="position: absolute; top: 20px; width: 100%; text-align: center; font-family: 'Fredoka', serif;">
+                            <div style="color: #fff; font-size: 1.8em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">IL MOSTRO</div>
+                            <div style="color: #e0f2ff; font-size: 1.5em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">DI GHIACCIO</div>
+                        </div>
+                        <div style="font-size: 5em; position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); opacity: 0.9;">❄️</div>
+                        <div style="position: absolute; bottom: 10px; width: 100%; text-align: center; color: #fff; font-size: 0.9em; font-weight: bold;">DAVID WALLIAMS</div>
+                    </div>
+                    <div class="book-title">Il mostro di ghiaccio</div>
+                    <div class="book-author">David Walliams</div>
+                    <div class="book-plot">
+                        Una creatura leggendaria vive nelle profondità dell'Artico: il Mostro di Ghiaccio. Quando Elsie, una giovane orfana, scopre che questa misteriosa creatura è in pericolo, inizia un'avventura straordinaria per salvarlo. Un racconto emozionante che mescola amicizia, coraggio e magia, con il caratteristico tocco di umorismo di David Walliams.
+                    </div>
+                    <div class="comments-section">
+                        <div class="comments-label">💬 Commenti del gruppo:</div>
+                        <textarea class="comments-textarea" data-book="mostro-ghiaccio" placeholder="Scrivi qui i vostri commenti e le riflessioni sul libro..."></textarea>
+                        <button class="save-btn" onclick="saveComment('mostro-ghiaccio')">Salva Commento</button>
+                        <div class="saved-indicator" id="saved-mostro-ghiaccio">✓ Salvato!</div>
+                    </div>
+                </div>
+
+                <!-- Redwall -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: #c1423f; position: relative; border: 3px solid #654321;">
+                        <div style="position: absolute; top: 15px; width: 100%; text-align: center;">
+                            <div style="color: #ffd700; font-size: 2.2em; font-weight: bold; text-shadow: 3px 3px 6px rgba(0,0,0,0.8); font-family: 'Fredoka', serif;">REDWALL</div>
+                        </div>
+                        <div style="font-size: 4em; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">🏰</div>
+                        <div style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); font-size: 3em;">⚔️</div>
+                        <div style="position: absolute; bottom: 10px; width: 100%; text-align: center; color: #ffd700; font-size: 1em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">BRIAN JACQUES</div>
+                    </div>
+                    <div class="book-title">Redwall</div>
+                    <div class="book-author">Brian Jacques</div>
+                    <div class="book-plot">
+                        L'Abbazia di Redwall è un luogo pacifico abitato da topi, scoiattoli e altre creature bonarie. Ma quando l'esercito di ratti guidato dal malvagio Cluny il Flagello minaccia la loro casa, il giovane topo Matthias dovrà dimostrare il suo coraggio. Una saga fantasy epica ricca di avventure, battaglie e personaggi indimenticabili nel mondo degli animali antropomorfi.
+                    </div>
+                    <div class="comments-section">
+                        <div class="comments-label">💬 Commenti del gruppo:</div>
+                        <textarea class="comments-textarea" data-book="redwall" placeholder="Scrivi qui i vostri commenti e le riflessioni sul libro..."></textarea>
+                        <button class="save-btn" onclick="saveComment('redwall')">Salva Commento</button>
+                        <div class="saved-indicator" id="saved-redwall">✓ Salvato!</div>
+                    </div>
+                </div>
+
+                <!-- La magica medicina -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: #f7931e; position: relative;">
+                        <div style="position: absolute; top: 20px; width: 100%; text-align: center;">
+                            <div style="color: #8b2635; font-size: 0.9em; font-weight: bold; font-family: 'Fredoka', serif;">ROALD DAHL</div>
+                        </div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                            <div style="font-size: 4.5em;">🧪</div>
+                            <div style="color: #fff; font-size: 1.6em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin-top: 10px; font-family: 'Fredoka', serif; line-height: 1.2;">LA MAGICA<br>MEDICINA</div>
+                        </div>
+                        <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: 2em;">💊✨</div>
+                    </div>
+                    <div class="book-title">La magica medicina</div>
+                    <div class="book-author">Roald Dahl</div>
+                    <div class="book-plot">
+                        George è stanco della sua nonna brontolona e cattiva. Un giorno, mentre i genitori sono fuori, decide di prepararle una medicina speciale mescolando ogni cosa che trova in casa: shampoo, vernice, olio motore e molto altro! Il risultato sarà una pozione magica dagli effetti sorprendenti e esilaranti. Una storia divertente e surreale dal maestro della letteratura per ragazzi.
+                    </div>
+                    <div class="comments-section">
+                        <div class="comments-label">💬 Commenti del gruppo:</div>
+                        <textarea class="comments-textarea" data-book="magica-medicina" placeholder="Scrivi qui i vostri commenti e le riflessioni sul libro..."></textarea>
+                        <button class="save-btn" onclick="saveComment('magica-medicina')">Salva Commento</button>
+                        <div class="saved-indicator" id="saved-magica-medicina">✓ Salvato!</div>
+                    </div>
+                </div>
+
+                <!-- Detective Club -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: #2c5f8d; position: relative;">
+                        <div style="position: absolute; top: 15px; width: 100%; text-align: center;">
+                            <div style="color: #ffd700; font-size: 0.8em; font-weight: bold; letter-spacing: 2px;">JAMES PATTERSON</div>
+                        </div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                            <div style="font-size: 4em; margin-bottom: 10px;">🔍</div>
+                            <div style="color: #fff; font-size: 1.8em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); font-family: 'Fredoka', cursive;">DETECTIVE<br>CLUB</div>
+                        </div>
+                        <div style="position: absolute; bottom: 20px; width: 100%; display: flex; justify-content: center; gap: 15px; font-size: 1.5em;">
+                            <span>🔦</span><span>📋</span><span>🕵️</span>
+                        </div>
+                    </div>
+                    <div class="book-title">Detective Club</div>
+                    <div class="book-author">James Patterson</div>
+                    <div class="book-plot">
+                        Minerva Keen vive nel lussuoso palazzo Arcanum di Chicago e ama risolvere misteri. Quando i suoi vicini iniziano a essere avvelenati, decide di creare un club investigativo con suo fratello pasticcione e un compagno di scuola timido ma leale. Insieme dovranno scoprire chi è il colpevole prima che sia troppo tardi. Un mystery divertente, pieno di colpi di scena e personaggi eccentrici.
+                    </div>
+                    <div class="comments-section">
+                        <div class="comments-label">💬 Commenti del gruppo:</div>
+                        <textarea class="comments-textarea" data-book="detective-club" placeholder="Scrivi qui i vostri commenti e le riflessioni sul libro..."></textarea>
+                        <button class="save-btn" onclick="saveComment('detective-club')">Salva Commento</button>
+                        <div class="saved-indicator" id="saved-detective-club">✓ Salvato!</div>
+                    </div>
+                </div>
+
+                <!-- Dieci piccoli indiani -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: #2d2d2d; position: relative; border: 2px solid #8b4513;">
+                        <div style="position: absolute; top: 20px; width: 100%; text-align: center;">
+                            <div style="color: #d4af37; font-size: 0.8em; font-weight: bold; letter-spacing: 3px; font-family: 'Fredoka', serif;">AGATHA CHRISTIE</div>
+                        </div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 90%;">
+                            <div style="color: #d4af37; font-size: 1.9em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-family: 'Fredoka', serif; line-height: 1.2;">DIECI<br>PICCOLI<br>INDIANI</div>
+                        </div>
+                        <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-size: 3em;">🏝️</div>
+                    </div>
+                    <div class="book-title">Dieci piccoli indiani</div>
+                    <div class="book-author">Agatha Christie</div>
+                    <div class="book-plot">
+                        Dieci estranei vengono invitati su un'isola remota. Uno per uno, iniziano a morire secondo i versi di una filastrocca inquietante. Nessuno può lasciare l'isola e tutti sono sospetti. Chi è l'assassino? Il capolavoro del giallo di Agatha Christie è un thriller psicologico mozzafiato che tiene il lettore con il fiato sospeso fino all'ultima pagina.
+                    </div>
+                    <div class="comments-section">
+                        <div class="comments-label">💬 Commenti del gruppo:</div>
+                        <textarea class="comments-textarea" data-book="dieci-indiani" placeholder="Scrivi qui i vostri commenti e le riflessioni sul libro..."></textarea>
+                        <button class="save-btn" onclick="saveComment('dieci-indiani')">Salva Commento</button>
+                        <div class="saved-indicator" id="saved-dieci-indiani">✓ Salvato!</div>
+                    </div>
+                </div>
+
+                <!-- Inuyasha -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: #e74c3c; position: relative;">
+                        <div style="position: absolute; top: 10px; right: 10px; background: #fff; color: #e74c3c; padding: 5px 10px; font-weight: bold; font-size: 0.7em; border-radius: 3px;">MANGA</div>
+                        <div style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); text-align: center; width: 90%;">
+                            <div style="color: #fff; font-size: 2.3em; font-weight: bold; text-shadow: 3px 3px 6px rgba(0,0,0,0.8); font-family: 'Bubblegum Sans', Impact, sans-serif; letter-spacing: 2px;">INUYASHA</div>
+                        </div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 5em; filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5));">⚔️</div>
+                        <div style="position: absolute; bottom: 15px; width: 100%; text-align: center; color: #ffd700; font-size: 0.9em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">RUMIKO TAKAHASHI</div>
+                    </div>
+                    <div class="book-title">Inuyasha</div>
+                    <div class="book-author">Rumiko Takahashi</div>
+                    <div class="book-plot">
+                        Kagome, una studentessa moderna, cade in un pozzo magico e viene catapultata nell'epoca Sengoku del Giappone feudale. Qui incontra Inuyasha, un mezzo-demone dai capelli argentati. Insieme dovranno raccogliere i frammenti della Sfera dei Quattro Spiriti, un gioiello leggendario frantumato, prima che cada nelle mani del malvagio Naraku. Un manga epico che mescola fantasy, avventura e romanticismo.
+                    </div>
+                    <div class="comments-section">
+                        <div class="comments-label">💬 Commenti del gruppo:</div>
+                        <textarea class="comments-textarea" data-book="inuyasha" placeholder="Scrivi qui i vostri commenti e le riflessioni sul manga..."></textarea>
+                        <button class="save-btn" onclick="saveComment('inuyasha')">Salva Commento</button>
+                        <div class="saved-indicator" id="saved-inuyasha">✓ Salvato!</div>
+                    </div>
+                </div>
+
+                <!-- Demon Slayer -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: #16213e; position: relative;">
+                        <div style="position: absolute; top: 10px; right: 10px; background: #fff; color: #000; padding: 5px 10px; font-weight: bold; font-size: 0.7em; border-radius: 3px;">MANGA</div>
+                        <div style="position: absolute; top: 25px; left: 50%; transform: translateX(-50%); text-align: center; width: 90%;">
+                            <div style="color: #ff4444; font-size: 2em; font-weight: bold; text-shadow: 3px 3px 8px rgba(255,68,68,0.8); font-family: 'Bubblegum Sans', Impact, sans-serif; letter-spacing: 1px;">DEMON</div>
+                            <div style="color: #fff; font-size: 2em; font-weight: bold; text-shadow: 3px 3px 6px rgba(0,0,0,0.8); font-family: 'Bubblegum Sans', Impact, sans-serif; letter-spacing: 1px;">SLAYER</div>
+                        </div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4.5em; filter: drop-shadow(0 0 10px rgba(255,68,68,0.6));">🗡️</div>
+                        <div style="position: absolute; bottom: 15px; width: 100%; text-align: center; color: #aaa; font-size: 0.85em; font-weight: bold;">KOYOHARU GOTŌGE</div>
+                    </div>
+                    <div class="book-title">Demon Slayer</div>
+                    <div class="book-author">Koyoharu Gotōge</div>
+                    <div class="book-plot">
+                        Nel Giappone del periodo Taishō, Tanjiro Kamado torna a casa e trova la sua famiglia sterminata da un demone. L'unica sopravvissuta è sua sorella Nezuko, trasformata in un demone. Tanjiro intraprende un viaggio per diventare un ammazzademoni e trovare una cura per far tornare Nezuko umana. Un manga d'azione spettacolare con battaglie mozzafiato, personaggi commoventi e temi di famiglia e sacrificio.
+                    </div>
+                    <div class="comments-section">
+                        <div class="comments-label">💬 Commenti del gruppo:</div>
+                        <textarea class="comments-textarea" data-book="demon-slayer" placeholder="Scrivi qui i vostri commenti e le riflessioni sul manga..."></textarea>
+                        <button class="save-btn" onclick="saveComment('demon-slayer')">Salva Commento</button>
+                        <div class="saved-indicator" id="saved-demon-slayer">✓ Salvato!</div>
+                    </div>
+                </div>
+
+                <!-- Dungeon Food -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: #6b4423; position: relative;">
+                        <div style="position: absolute; top: 10px; right: 10px; background: #fff; color: #8b5a3c; padding: 5px 10px; font-weight: bold; font-size: 0.7em; border-radius: 3px;">MANGA</div>
+                        <div style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); text-align: center; width: 90%;">
+                            <div style="color: #ffd700; font-size: 2em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-family: 'Bubblegum Sans', Impact, sans-serif;">DUNGEON</div>
+                            <div style="color: #ff6347; font-size: 2em; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-family: 'Bubblegum Sans', Impact, sans-serif;">FOOD</div>
+                        </div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 4em; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.6));">🍖</div>
+                        <div style="position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; font-size: 1.3em;">
+                            <span>🗡️</span><span>🍺</span><span>🐉</span>
+                        </div>
+                        <div style="position: absolute; bottom: 8px; width: 100%; text-align: center; color: #ddd; font-size: 0.8em; font-weight: bold;">RYOKO KUI</div>
+                    </div>
+                    <div class="book-title">Dungeon Food</div>
+                    <div class="book-author">Ryoko Kui</div>
+                    <div class="book-plot">
+                        Dopo una disastrosa spedizione in un dungeon dove un drago divora la sorella di Laios, il gruppo deve tornare rapidamente a salvarla prima che venga digerita. Ma senza provviste e senza soldi, come sopravvivere? La soluzione è... mangiare i mostri del dungeon! Con l'aiuto del nano cuoco Senshi, impareranno a cucinare creature fantastiche in questo manga che combina avventura fantasy e cucina in modo geniale e divertente.
+                    </div>
+                    <div class="comments-section">
+                        <div class="comments-label">💬 Commenti del gruppo:</div>
+                        <textarea class="comments-textarea" data-book="dungeon-food" placeholder="Scrivi qui i vostri commenti e le riflessioni sul manga..."></textarea>
+                        <button class="save-btn" onclick="saveComment('dungeon-food')">Salva Commento</button>
+                        <div class="saved-indicator" id="saved-dungeon-food">✓ Salvato!</div>
+                    </div>
+                </div>
+
+                <!-- Topolino -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: #cc0000; position: relative; border: 4px solid #ffd700;">
+                        <div style="position: absolute; top: 15px; width: 100%; text-align: center;">
+                            <div style="background: #ffd700; color: #000; display: inline-block; padding: 8px 20px; border-radius: 20px; font-weight: bold; font-size: 1.8em; font-family: 'Bubblegum Sans', 'Comic Sans MS', cursive; transform: rotate(-5deg); box-shadow: 3px 3px 8px rgba(0,0,0,0.4);">TOPOLINO</div>
+                        </div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 5em; filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5));">🐭</div>
+                        <div style="position: absolute; bottom: 15px; width: 100%; display: flex; justify-content: center; gap: 10px; font-size: 1.8em;">
+                            <span style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));">⭐</span>
+                            <span style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));">✨</span>
+                            <span style="filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));">⭐</span>
+                        </div>
+                    </div>
+                    <div class="book-title">Topolino</div>
+                    <div class="book-author">Walt Disney / Vari autori</div>
+                    <div class="book-plot">
+                        Le avventure del topo più famoso del mondo! Topolino, insieme ai suoi amici Pippo, Pluto, Minnie e il perfido Gambadilegno, vive incredibili avventure a Topolinia. Dalle storie detective dove è "Topolino e il mistero di...", alle parodie letterarie e cinematografiche, alle avventure fantascientifiche: ogni numero offre storie divertenti, intelligenti e piene di azione che hanno conquistato generazioni di lettori.
+                    </div>
+                    <div class="comments-section">
+                        <div class="comments-label">💬 Commenti del gruppo:</div>
+                        <textarea class="comments-textarea" data-book="topolino" placeholder="Scrivi qui i vostri commenti e le riflessioni sulle storie..."></textarea>
+                        <button class="save-btn" onclick="saveComment('topolino')">Salva Commento</button>
+                        <div class="saved-indicator" id="saved-topolino">✓ Salvato!</div>
+                    </div>
+                </div>
+
+                <!-- Lo Sgnumfo -->
+                <div class="book-card">
+                    <div class="book-cover" style="background: #4a2c6b; position: relative; border: 3px solid #8b6f9e;">
+                        <div style="position: absolute; top: 20px; width: 100%; text-align: center;">
+                            <div style="color: #9d7eb8; font-size: 0.85em; font-weight: bold; letter-spacing: 2px; font-family: 'Fredoka', serif;">STEFANO BORTOLOTTI</div>
+                        </div>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 90%;">
+                            <div style="font-size: 3.5em; margin-bottom: 10px; filter: drop-shadow(0 0 8px rgba(157,126,184,0.6));">🏚️</div>
+                            <div style="color: #d4c5e0; font-size: 2.2em; font-weight: bold; text-shadow: 3px 3px 8px rgba(0,0,0,0.8); font-family: 'Fredoka', serif; letter-spacing: 1px;">LO<br>SGNUMFO</div>
+                        </div>
+                        <div style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); background: #ffd700; color: #2d1b4e; padding: 4px 12px; font-size: 0.7em; font-weight: bold; border-radius: 3px;">PREMIO IL BATTELLO A VAPORE 2024</div>
+                    </div>
+                    <div class="book-title">Lo Sgnumfo</div>
+                    <div class="book-author">Stefano Bortolotti</div>
+                    <div class="book-plot">
+                        Viola e sua madre Vera si trasferiscono nella lussuosa villa della zia Mefelide Malabrogi, senza sapere che è una delle creature più malvagie del paese. Ben presto Viola scopre che la zia è una megera crudele e che le persone che entrano nella villa... scompaiono misteriosamente! Con il coraggio trovato nei suoi libri preferiti e l'aiuto del vagabondo Tancredi e di una creaturina chiamata Sgnumfo, Viola dovrà affrontare la zia e svelare i segreti della villa. Vincitore del Premio Il Battello a Vapore 2024.
+                    </div>
+                    <div class="comments-section">
+                        <div class="comments-label">💬 Commenti del gruppo:</div>
+                        <textarea class="comments-textarea" data-book="sgnumfo" placeholder="Scrivi qui i vostri commenti e le riflessioni sul libro..."></textarea>
+                        <button class="save-btn" onclick="saveComment('sgnumfo')">Salva Commento</button>
+                        <div class="saved-indicator" id="saved-sgnumfo">✓ Salvato!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📖 Book Club 10+ - Biblioteca di Segrate con la lettrice Elena 📖</p>
+            <p style="margin-top: 10px; font-size: 0.85em;">💾 I commenti vengono salvati automaticamente nel browser</p>
+        </div>
+    </div>
+
+    <script>
+        // Carica i commenti salvati quando la pagina viene caricata
+        window.addEventListener('DOMContentLoaded', function() {
+            const textareas = document.querySelectorAll('.comments-textarea');
+            textareas.forEach(textarea => {
+                const bookId = textarea.getAttribute('data-book');
+                const savedComment = localStorage.getItem('comment-' + bookId);
+                if (savedComment) {
+                    textarea.value = savedComment;
+                }
+            });
+        });
+
+        function saveComment(bookId) {
+            const textarea = document.querySelector(`textarea[data-book="${bookId}"]`);
+            const comment = textarea.value;
+            
+            // Salva nel localStorage
+            localStorage.setItem('comment-' + bookId, comment);
+            
+            // Mostra l'indicatore di salvataggio
+            const indicator = document.getElementById('saved-' + bookId);
+            indicator.style.display = 'block';
+            
+            // Nascondi l'indicatore dopo 2 secondi
+            setTimeout(() => {
+                indicator.style.display = 'none';
+            }, 2000);
+        }
+
+        // Salvataggio automatico mentre si scrive (opzionale)
+        document.querySelectorAll('.comments-textarea').forEach(textarea => {
+            textarea.addEventListener('input', function() {
+                const bookId = this.getAttribute('data-book');
+                localStorage.setItem('comment-' + bookId, this.value);
+            });
+        });
+    </script>
+</body>
+</html>
